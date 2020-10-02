@@ -1,0 +1,60 @@
+<div class="notebook">
+
+<div class="nb-cell markdown" name="md1">
+# Listy różnicowe i prosta rekurencja
+</div>
+
+<div class="nb-cell markdown" name="md5">
+Celem tych ćwiczeń jest uświadomienie sobie różnic w przetwarzaniu ze sobą list różnicowych
+</div>
+
+<div class="nb-cell markdown" name="md2">
+### 1.length_diff/2
+Proszę napisać predykat _length_diff/2_, który policzy długość listy różnicowej:
+==
+?- length_diff([1,2,3|E]-E,X).
+
+X = 3
+==
+#### Podpowiedzi:
+- proszę zacząć od zadania sobie pytania: jak wygląda pusta lista różnicowa?
+</div>
+
+<div class="nb-cell program" name="p1">
+length_diff([]-_, 0) :- !.
+length_diff([_|E]-_, X) :- length_diff(E-[], X1), X is X1+1.
+</div>
+
+<div class="nb-cell query" name="q1">
+length_diff([1,2,3|E]-E, X)
+</div>
+
+<div class="nb-cell markdown" name="md3">
+### 2. member_diff/2
+Proszę napisać predykat _member_diff/2_, który sprawdzi czy zadany element należy do listy różnicowej.
+
+==
+?- member_diff(3,[1,2,3|E]-E).
+
+true
+
+?- member_diff(3,[1,2,4,5|E]-E).
+
+false
+==
+</div>
+
+<div class="nb-cell program" name="p2">
+member_diff(A, [A|_]-_) :- !.
+member_diff(A, [_|E]-_) :- member_diff(A, E-_).
+</div>
+
+<div class="nb-cell query" name="q2">
+member_diff(4,[1,2,3|E]-E).
+</div>
+
+<div class="nb-cell markdown" name="md4">
+
+</div>
+
+</div>
